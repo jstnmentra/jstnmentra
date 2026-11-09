@@ -2,18 +2,14 @@
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/card-dark.svg">
-  <img alt="justin@resolvia: . OS: ......................................... Windows 11 | . Kernel: ................... Software Engineer @ Resolvia | . IDE: .............................. VS Code, Claude Code | . Languages.Programming: .......... TypeScript, JavaScript" src="assets/card-light.svg">
+  <img alt="justin@becker: . OS: ......................................... Windows 11 | . Uptime: .................... 22 years, 8 months, 13 days | . Host: ...................................... Rheinfelden | . Kernel: .............................. Software Engineer" src="assets/card-light.svg">
 </picture>
 </p>
 
 <p align="center">
-<a href="https://resolvia.ai"><picture>
+<a href="https://www.linkedin.com/in/justin-becker-49b241322/"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/button-0-dark.svg">
-  <img alt="Resolvia" src="assets/button-0-light.svg">
-</picture></a>
-<a href="mailto:justin@resolvia.ai"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/button-1-dark.svg">
-  <img alt="Email" src="assets/button-1-light.svg">
+  <img alt="LinkedIn" src="assets/button-0-light.svg">
 </picture></a>
 </p>
 

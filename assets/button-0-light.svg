@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="446" height="46" viewBox="0 0 446 46" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace">
-  <rect x="0.5" y="0.5" width="445" height="45" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
-  <rect x="10" y="43" width="426" height="2" rx="1" fill="#0969da"/>
-  <g transform="translate(161 11)"><rect x="2" y="3" width="20" height="14" rx="2" fill="none" stroke="#0969da" stroke-width="2"/><path d="M8 21h8M12 17v4M6 8l3 2-3 2M11 12h5" fill="none" stroke="#0969da" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
-  <text x="193" y="28" font-size="14px" letter-spacing="1" fill="#24292f">RESOLVIA</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="916" height="46" viewBox="0 0 916 46" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace">
+  <rect x="0.5" y="0.5" width="915" height="45" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+  <rect x="10" y="43" width="896" height="2" rx="1" fill="#0969da"/>
+  <g transform="translate(396 11)"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0969da"/><path d="M7 10v7M7 7v.01M11 17v-7M11 13a3 3 0 0 1 6 0v4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></g>
+  <text x="428" y="28" font-size="14px" letter-spacing="1" fill="#24292f">LINKEDIN</text>
 </svg>

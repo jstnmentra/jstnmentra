@@ -24,10 +24,14 @@ const LINE = 20;
 const PAD = 24;
 const COLS = 58; // characters per line in the info column
 const GAP = 28;
+// The portrait uses a smaller grid than the text, for more detail per pixel.
+const ART_FONT = 9;
+const ART_CHAR = 5.45;
+const ART_LINE = 10.5;
 
 const THEMES = {
   dark: {
-    bg: '#0d1117', card: '#161b22', border: '#30363d', text: '#c9d1d9', art: '#8b949e',
+    bg: '#0d1117', card: '#161b22', border: '#30363d', text: '#c9d1d9', art: '#b1bac4',
     key: '#58a6ff', value: '#a5d6ff', dots: '#484f58', accent: '#66b8ff',
     add: '#3fb950', del: '#f85149', muted: '#8b949e',
     heat: ['#21262d', '#0e3a5c', '#16609a', '#2b8ae0', '#66b8ff'],
@@ -224,12 +228,12 @@ const artCols = Math.max(0, ...art.map((l) => l.length));
 
 // ─── card ────────────────────────────────────────────────────────────────────
 function card(t) {
-  const infoX = PAD + (artCols ? artCols * CHAR + GAP : 0);
+  const infoX = Math.round(PAD + (artCols ? artCols * ART_CHAR + GAP : 0));
   const width = Math.ceil(infoX + COLS * CHAR + PAD);
   const textRows = lines.length + 2; // + empty line + prompt cursor
-  const height = PAD * 2 + Math.max(textRows, art.length) * LINE;
+  const height = Math.ceil(PAD * 2 + Math.max(textRows * LINE, art.length * ART_LINE));
   const firstBase = PAD + FONT;
-  const artTop = firstBase + Math.max(0, Math.floor((textRows - art.length) / 2)) * LINE;
+  const artTop = Math.round(PAD + ART_FONT + Math.max(0, (height - PAD * 2 - art.length * ART_LINE) / 2));
 
   const tspans = (runs) => runs.map(([text, cls]) => `<tspan class="${cls}">${esc(text)}</tspan>`).join('');
   const info = lines
@@ -237,13 +241,13 @@ function card(t) {
     .join('\n    ');
   const cursorY = firstBase + (lines.length + 1) * LINE;
   const artText = art
-    .map((l, i) => `<text x="${PAD}" y="${artTop + i * LINE}" class="a">${esc(l)}</text>`)
+    .map((l, i) => `<text x="${PAD}" y="${artTop + i * ART_LINE}" class="a">${esc(l)}</text>`)
     .join('\n    ');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="${FONT}px">
   <style>
     text { white-space: pre; }
-    .a { fill: ${t.art}; }
+    .a { fill: ${t.art}; font-size: ${ART_FONT}px; }
     .h { fill: ${t.accent}; font-weight: 700; }
     .k { fill: ${t.key}; }
     .v { fill: ${t.value}; }
@@ -252,14 +256,13 @@ function card(t) {
     .add { fill: ${t.add}; }
     .del { fill: ${t.del}; }
     .c { fill: ${t.accent}; }
-    @keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
-    .blink { animation: blink 1.1s step-end infinite; fill: ${t.accent}; }
   </style>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="12" fill="${t.card}" stroke="${t.border}"/>
   <g xml:space="preserve">
     ${artText}
     ${info}
-    <text x="${infoX}" y="${cursorY}"><tspan class="c">&gt;</tspan> <tspan class="blink">█</tspan></text>
+    <text x="${infoX}" y="${cursorY}" class="c">&gt;</text>
+    <rect x="${infoX + 2 * CHAR}" y="${cursorY - FONT + 2}" width="${CHAR}" height="${FONT + 1}" fill="${t.accent}"><animate attributeName="opacity" values="1;0" dur="1.1s" calcMode="discrete" repeatCount="indefinite"/></rect>
   </g>
 </svg>
 `;
@@ -309,7 +312,7 @@ function contributions(t, width) {
     .m { fill: ${t.muted}; font-size: 11px; }
   </style>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="12" fill="${t.card}" stroke="${t.border}"/>
-  <text x="${PAD - 4}" y="28" class="t">${fmt(cal.totalContributions)} contributions in the last year</text>
+  <text x="${PAD - 4}" y="28" class="t">${fmt(cal.totalContributions)} contribution${cal.totalContributions === 1 ? '' : 's'} in the last year</text>
   ${months.join('\n  ')}
   ${days.join('\n  ')}
   ${cells.join('\n  ')}
@@ -343,6 +346,8 @@ function button(t, b, width) {
 const write = (name, content) => fs.writeFileSync(path.join(assets, name), content);
 const buttons = cfg.buttons.filter((b) => b.href);
 let cardWidth = 0;
+// Buttons are numbered, so one taken out of the config would otherwise linger.
+for (const f of fs.readdirSync(assets)) if (/^button-\d+-(dark|light)\.svg$/.test(f)) fs.rmSync(path.join(assets, f));
 
 for (const [mode, t] of Object.entries(THEMES)) {
   const svg = card(t);
