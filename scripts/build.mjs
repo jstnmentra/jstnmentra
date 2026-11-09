@@ -210,6 +210,8 @@ const lines = [
   blank,
   ...section(cfg.focus),
   blank,
+  // Optional titled blocks, e.g. { "title": "Resolvia", "rows": [["Product", "…"]] }.
+  ...(cfg.extra ?? []).flatMap((s) => [rule(s.title), ...section(s.rows), blank]),
   rule('Contact'),
   ...section(cfg.contact),
   blank,
