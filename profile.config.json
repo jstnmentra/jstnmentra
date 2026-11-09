@@ -1,0 +1,33 @@
+{
+  "login": "jstnresolvia",
+  "prompt": "justin@resolvia",
+  "birthday": null,
+  "system": [
+    ["OS", "Windows 11"],
+    ["Uptime", "{uptime}"],
+    ["Host", null],
+    ["Kernel", "Software Engineer @ Resolvia"],
+    ["IDE", "VS Code, Claude Code"]
+  ],
+  "languages": [
+    ["Languages.Programming", "TypeScript, JavaScript"],
+    ["Languages.Computer", "HTML, CSS, SQL, GraphQL"],
+    ["Languages.Real", "German, English"]
+  ],
+  "focus": [
+    ["Focus.AI", "Agents, MCP, LLM Automation"],
+    ["Focus.Web", "Next.js, React, PostgreSQL"],
+    ["Focus.Commerce", "Shopify, Returns, Support"],
+    ["Hobbies", null]
+  ],
+  "contact": [
+    ["Email", "justin@resolvia.ai"],
+    ["Website", "resolvia.ai"],
+    ["LinkedIn", null]
+  ],
+  "buttons": [
+    { "label": "Resolvia", "icon": "monitor", "href": "https://resolvia.ai" },
+    { "label": "LinkedIn", "icon": "linkedin", "href": null },
+    { "label": "Email", "icon": "mail", "href": "mailto:justin@resolvia.ai" }
+  ]
+}
